@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Measuring Multimodal Mathematical Reasoning with MATH-Vision Dataset">
+  <meta name="keywords" content="mathvision, Math Vision">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> MathGenie </title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+  <!-- <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+/Users/panlu/Library/Mobile Documents/com~apple~CloudDocs/ImageMath/visual-mathqa-server/data_final/images
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link rel="icon" href="static/assets/mathgenie_logo.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/leaderboard.css">
+
+  <!-- <link href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator_bulma.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script> -->
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/explorer-index.js"></script>
+  <script src="./static/js/question_card.js"></script>
+
+  <script src="./static/js/leaderboard_testmini.js"></script>
+  <script src="./data/results/output_folders.js" defer></script>
+  <script src="./data/results/model_scores.js" defer></script>
+
+  <script src="./visualizer/data/data_public.js" defer></script>
+</head>
+
+<body>
+
+  <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More Research
+          </a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="https://chameleon-llm.github.io/">
+              <b>Chameleon</b>
+              <p style="font-size:18px; display: inline; margin-left: 5px;">🔥</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav> -->
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title is-bold">
+              <!-- <img src="static/images/mathvision.png" style="width:1em;vertical-align: middle" alt="Logo" /> -->
+              <span class="MATH-V" style="vertical-align: middle">MathGenie</span>
+            </h1>
+            <h2 class="subtitle is-3 publication-subtitle">
+              Generating Synthetic Data with Question Back-translation for Enhancing Mathematical Reasoning of LLMs
+            </h2>
+            <h3>
+              Zimu Lu, Aojun Zhou, Houxing Ren, Ke Wang, Weikang Shi, Junting Pan, Mingjie Zhan, Hongsheng Li
+            </h3>
+            <!-- <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="homepage"></a>author<sup style="color:#6fbf73;">1</sup>,</span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup style="color:#6fbf73;">1</sup>University,</span>
+            </div> -->
+
+
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <!-- @PAN TODO: change links -->
+                  <a href="https://arxiv.org/pdf/2402.16352.pdf"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2402.16352" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/MathGenie/MathGenie"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <span class="link-block">
+                  <a href="https://huggingface.co/MathGenie/MathGenie-InterLM-20B"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <p style="font-size:18px">🤗</p>
+                      <!-- 🔗 -->
+                    </span>
+                    <span>Models</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+  <section class="section">
+    <div class="container" style="margin-top: -150px; margin-bottom: -100px;">
+      <div class="columns is-centered m-6">
+        <div class="column is-full has-text-centered content">
+          <div class="content has-text-centered">
+            <img src="static/assets/mathgenie_logo.png" alt="geometric reasoning" width="20%" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section hero is-light is-small">
+    <div class="container" style="margin-bottom: 2vh;">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Large language models (LLMs) have exhibited great potential in mathematical reasoning. However, there remains 
+              a performance gap in this area between existing open-source models and closed-source models such as GPT-4. In 
+              this paper, we introduce <b>MathGenie</b>, a novel method for generating diverse and reliable math problems 
+              from a small-scale problem-solution dataset (denoted as <i>seed data</i>). We augment the ground-truth solutions 
+              of our seed data and train a back-translation model to translate the augmented solutions back into new questions. 
+              Subsequently, we generate code-integrated solutions for the new questions. To ensure the correctness of the 
+              code-integrated solutions, we employ rationale-based strategy for solution verification. Various pretrained models, 
+              ranging from 7B to 70B, are trained on the newly curated data to test the effectiveness of the proposed augmentation 
+              technique, resulting in a family of models known as <i>MathGenieLM</i>. These models consistently outperform previous 
+              open-source models across five representative mathematical reasoning datasets, achieving state-of-the-art 
+              performance. In particular, MathGenieLM-InternLM2 achieves an accuracy of 87.7% on GSM8K and 55.7% on MATH, 
+              securing the best overall score among open-source language models.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+  </section>
+
+
+    <!-- DATASET SECTION -->
+  <section class="section">
+    <div class="hero-body has-text-centered">
+      <!-- <h1 class="title is-1 mathvision"><img src="static/images/mathvision.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>mathvision Dataset</h1> -->
+      <h1 class="title is-1 mathvision">
+        <span class="mathvision" style="vertical-align: middle">Method</span>
+      </h1>
+
+      <div id="container" style="height: 100%"></div>
+
+
+      <section class="section">
+        <div class="container">
+          <div class="columns is-four-fifths">
+            <div class="column">
+              <div class="content has-text-centered">
+                <img src="static/assets/fig_pipeline.png" alt="data-overview" style="max-width: 60%;" />
+                <p>
+                  Framework of MathGenie. Iterative Solution Augmentation augments human-annotated solutions in GSM8K and MATH to create new solutions, as shown in Step 1. These solutions are then back-translated to new questions using Question Back-translation, demonstrated in Step 2. Then reliable code-integrated solutions are curated using Verification-Based Solution Filtering, by generating solutions and filtering them using verification rationales, as shown in Step 3.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <!-- Abstract. -->
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div class="content has-text-justified">
+                <p>
+                  Iterative Solution Augmentation and Question Back-translation aims to generate diverse and reliable math problems. 
+                  The proposed math problem back-translation leverages the constraints and logical relationships inherent in mathematical solutions to create a diverse and high-quality set of new math problems. 
+                  Specifically, we iteratively augment the human-annotated solutions from the relatively small training sets of MATH and GSM8K, generating a large-scale collection of augmented new solutions. These solutions are then processed by a math back-translation model to back-translate the augmented solutions into their corresponding math questions.
+                </p>
+                <p>
+                  These newly generated math problems lack reliable ground-truth solutions, which necessitates the proposed Verification-Based Solution Filtering. We first build a model capable of generating code-integrated solutions and verifying these solutions. 
+                  Then, code-integrated solutions of the new questions are generated with this model. To enhance the reliability of these code-integrated solutions, we use the model to verify the model-generated solutions by generating verification rationales for them. 
+                  The verification rationales use interleaved natural language and code to verify the correctness of the solutions. 
+                  Only the solutions verified to be correct are retained, thus improving the accuracy and quality of the generated data.
+                </p>          
+              </div>
+            </div>
+          </div>
+          <!--/ Abstract. -->
+        </div>
+      </section>
+    </div>
+  </section>
+
+
+  <!-- DATASET SECTION -->
+  <section class="section">
+    <div class="hero-body has-text-centered">
+      <!-- <h1 class="title is-1 mathvision"><img src="static/images/mathvision.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>mathvision Dataset</h1> -->
+      <h1 class="title is-1 mathvision">
+        <span class="mathvision" style="vertical-align: middle">Experiments</span>
+      </h1>
+
+      <div id="container" style="height: 100%"></div>
+
+
+      <section class="section">
+        <div class="container">
+          <div class="columns is-centered has-text-centered">
+            <!-- <div class="column is-full-width has-text-centered"> -->
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Main Results</h2>
+            </div>
+          </div>
+          <div class="columns is-four-fifths">
+            <div class="column">
+              <div class="content has-text-centered">
+                <img src="static/assets/main_results.png" alt="data-overview" style="max-width: 80%;" />
+                <p>
+                  Results of MathGenieLM, compared to various open-source and closed-source models on 2 in-domain datasets (GSM8K, MATH), and 3 out-of-domain datasets (SVAMP, Simuleq, Mathematics).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <!-- Abstract. -->
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div class="content has-text-justified">
+                <p>
+                  Based on the results, we make the following observations:
+                </p>
+                <ul>
+                  <li>For open-source models with parameters ranging from 7B to 70B, MathGenieLM achieves state-of-the-art performance.</li>
+                  <li>MathGenieLM demonstrates particularly high performance on the three out-of-domain datasets compared to previous open-source models, showcasing the superior generalization capability of our method.</li>
+                  <li>MathGenieLM's accuracy exceeds that of ChatGPT-3.5 and PaLM-2. However, there remains a noticeable gap when compared to GPT-4's performance.</li>
+                  <li>MathGenieLM-Llemma-34B and MathGenieLM-InternLM2-20B reach over 55% accuracy on the challenging MATH dataset. This might be attributed to the high-quality math-related data they used in pretraining.</li>
+                  <li>Mixtral-8x7B achieves excellent performance, demonstrating the potential of Mixture of Experts (MoE) models.</li>
+                </ul>            
+              </div>
+            </div>
+          </div>
+          <!--/ Abstract. -->
+        </div>
+      </section>
+    </div>
+  </section>
+  </div>
+</section>
+
+ 
+
+  <!-- @PAN TODO: bibtex -->
+  <!-- <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3 has-text-centered">BibTeX</h2>
+      <pre><code>@misc{
+        title={MathGenie: Generating Synthetic Data with Question Back-translation for Enhancing Mathematical Reasoning of LLMs}, 
+        author={Zimu Lu, Aojun Zhou, Houxing Ren, Ke Wang, Weikang Shi, Junting Pan, Mingjie Zhan, Hongsheng Li},
+        year={2024},
+        eprint={2402.16352},
+        archivePrefix={arXiv},
+        primaryClass={cs.CV}
+  }</code></pre>
+    </div>
+  </section> -->
+
+
+
+  <footer class="footer">
+    <!-- <div class="container"> -->
+    <div class="content has-text-centered">
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is website adapted from <a href="https://nerfies.github.io/">Nerfies</a>, licensed under a
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+  </footer>
+
+</body>
+
+</html>
