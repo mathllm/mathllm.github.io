@@ -54,7 +54,8 @@
 
 <body>
 
-  <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
@@ -69,15 +70,27 @@
             More Research
           </a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="https://chameleon-llm.github.io/">
-              <b>Chameleon</b>
+            <a class="navbar-item" href="../mathvision/">
+              <b>MATH-Vision</b>
+              <p style="font-size:18px; display: inline; margin-left: 5px;">🔥🔥</p>
+            </a>
+            <a class="navbar-item" href="https://github.com/mathllm/MathCoder">
+              <b>MathCoder</b>
               <p style="font-size:18px; display: inline; margin-left: 5px;">🔥</p>
+            </a>
+            <a class="navbar-item" href="https://mathgenie.github.io/">
+              <b>MathGenie</b>
+              <p style="font-size:18px; display: inline; margin-left: 5px;">🔥</p>
+            </a>
+            <a class="navbar-item" href="https://wangk.org/publications/1_iclr2024_csv/">
+              <b>Code-based Self-Verification (CSV)</b>
+              <p style="font-size:18px; display: inline; margin-left: 5px;">🔥🔥</p>
             </a>
           </div>
         </div>
       </div>
     </div>
-  </nav> -->
+  </nav>
 
 
   <section class="hero">
@@ -101,8 +114,7 @@
                 <!-- PDF Link. -->
                 <span class="link-block">
                   <!-- @PAN TODO: change links -->
-                  <a href="https://arxiv.org/pdf/2410.08196"
-                    class="external-link button is-normal is-rounded is-dark">
+                  <a href="https://arxiv.org/pdf/2410.08196" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                     </span>
@@ -171,7 +183,23 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Code has been shown to be effective in enhancing the mathematical reasoning abilities of large language models due to its precision and accuracy. Previous works involving continued mathematical pretraining  often include code that utilizes math-related packages, which are primarily designed for fields such as engineering, machine learning, signal processing, or module testing, rather than being directly focused on mathematical reasoning. In this paper, we introduce a novel method for generating mathematical code accompanied with corresponding reasoning steps for continued pretraining. Our approach begins with the construction of a high-quality mathematical continued pretraining dataset by incorporating math-related web data, code using mathematical packages, math textbooks, and synthetic data. Next, we construct reasoning steps by extracting LaTeX expressions, the conditions needed for the expressions, and the results of the expressions from the previously collected dataset. Based on this extracted information, we generate corresponding code to accurately capture the mathematical reasoning process. Appending the generated code to each reasoning step results in data consisting of paired natural language reasoning steps and their corresponding code. Combining this data with the original dataset results in a 19.2B-token high-performing mathematical pretraining corpus, which we name MathCode-Pile. Training several popular base models with this corpus significantly improves their mathematical abilities, leading to the creation of the MathCoder2 family of models. All of our data processing and training code is open-sourced, ensuring full transparency and easy reproducibility of the entire data collection and training pipeline.
+              Code has been shown to be effective in enhancing the mathematical reasoning abilities of large language
+              models due to its precision and accuracy. Previous works involving continued mathematical pretraining
+              often include code that utilizes math-related packages, which are primarily designed for fields such as
+              engineering, machine learning, signal processing, or module testing, rather than being directly focused on
+              mathematical reasoning. In this paper, we introduce a novel method for generating mathematical code
+              accompanied with corresponding reasoning steps for continued pretraining. Our approach begins with the
+              construction of a high-quality mathematical continued pretraining dataset by incorporating math-related
+              web data, code using mathematical packages, math textbooks, and synthetic data. Next, we construct
+              reasoning steps by extracting LaTeX expressions, the conditions needed for the expressions, and the
+              results of the expressions from the previously collected dataset. Based on this extracted information, we
+              generate corresponding code to accurately capture the mathematical reasoning process. Appending the
+              generated code to each reasoning step results in data consisting of paired natural language reasoning
+              steps and their corresponding code. Combining this data with the original dataset results in a 19.2B-token
+              high-performing mathematical pretraining corpus, which we name MathCode-Pile. Training several popular
+              base models with this corpus significantly improves their mathematical abilities, leading to the creation
+              of the MathCoder2 family of models. All of our data processing and training code is open-sourced, ensuring
+              full transparency and easy reproducibility of the entire data collection and training pipeline.
             </p>
           </div>
         </div>
@@ -181,7 +209,7 @@
   </section>
 
 
-    <!-- DATASET SECTION -->
+  <!-- DATASET SECTION -->
   <section class="section">
     <div class="hero-body has-text-centered">
       <!-- <h1 class="title is-1 mathvision"><img src="static/images/mathvision.png" style="width:1.0em;vertical-align: middle" alt="Logo"/>mathvision Dataset</h1> -->
@@ -199,7 +227,14 @@
               <div class="content has-text-centered">
                 <img src="static/assets/pipeline.png" alt="data-overview" style="max-width: 60%;" />
                 <p>
-                  The data processing pipeline. (a) shows the pipeline of prior works. (b) demonstrates our method. We first use a fastText classifier to filter the Common Crawl corpus, resulting in the initial filtered math texts. Then, we  annotate part of the filtered texts to train a new fastText classifier, and conduct a second filtering, resulting in the finer filtered math texts. Then we use an instruction-tuned LLM to extract reasoning steps from these math-related texts, and translate the reasoning steps into corresponding code snippets. We execute the code snippets and compare the output with the expected result. If the code executes successfully and the result is as expected, the code is retained.
+                  The data processing pipeline. (a) shows the pipeline of prior works. (b) demonstrates our method. We
+                  first use a fastText classifier to filter the Common Crawl corpus, resulting in the initial filtered
+                  math texts. Then, we annotate part of the filtered texts to train a new fastText classifier, and
+                  conduct a second filtering, resulting in the finer filtered math texts. Then we use an
+                  instruction-tuned LLM to extract reasoning steps from these math-related texts, and translate the
+                  reasoning steps into corresponding code snippets. We execute the code snippets and compare the output
+                  with the expected result. If the code executes successfully and the result is as expected, the code is
+                  retained.
                 </p>
               </div>
             </div>
@@ -214,11 +249,29 @@
             <div class="column is-four-fifths">
               <div class="content has-text-justified">
                 <p>
-                  First, we gather and carefully filter a wide variety of math-related data sources, including web pages, model-generated data, math-related code, and textbooks. Through an advanced filtering process, we ensure the dataset is both large and highly relevant, minimizing irrelevant content while preserving the mathematical texts necessary for training. This results in a 16.5B-token dataset that forms the foundation of our pretraining efforts. By conducting experiments with smaller models, we show that this careful curation leads to more efficient training without sacrificing model performance.
+                  First, we gather and carefully filter a wide variety of math-related data sources, including web
+                  pages, model-generated data, math-related code, and textbooks. Through an advanced filtering process,
+                  we ensure the dataset is both large and highly relevant, minimizing irrelevant content while
+                  preserving the mathematical texts necessary for training. This results in a 16.5B-token dataset that
+                  forms the foundation of our pretraining efforts. By conducting experiments with smaller models, we
+                  show that this careful curation leads to more efficient training without sacrificing model
+                  performance.
                 </p>
                 <p>
-                  Second, we propose a novel method for generating large amounts of paired mathematical reasoning steps and their corresponding Python code. Given a piece of text from the pretraining corpus collected above, we wrap it in a carefully designed prompt that instructs a Llama-3.1-70B-Instruct model to extract LaTeX expressions along with their relevant context, including the conditions for each expression and the result of its computation. This results in a list of comprehensive mathematical reasoning steps, complete with the necessary conditions, the computations taken, and the results. Then, we prompt the model to translate each reasoning step into a Python code snippet that captures the underlying reasoning process. The generated Python snippets are executed, and only those that run successfully and produce outputs matching the expected results are retained. By pairing the code with the corresponding reasoning step, we create the final data. This process yields a 2.7B-token corpus of mathematical code snippets accompanied with their corresponding reasoning steps, which we combine with the data generated in the first step to create a 19.2B-token pretraining dataset, named <b>MathCode-Pile</b>.
-                </p>          
+                  Second, we propose a novel method for generating large amounts of paired mathematical reasoning steps
+                  and their corresponding Python code. Given a piece of text from the pretraining corpus collected
+                  above, we wrap it in a carefully designed prompt that instructs a Llama-3.1-70B-Instruct model to
+                  extract LaTeX expressions along with their relevant context, including the conditions for each
+                  expression and the result of its computation. This results in a list of comprehensive mathematical
+                  reasoning steps, complete with the necessary conditions, the computations taken, and the results.
+                  Then, we prompt the model to translate each reasoning step into a Python code snippet that captures
+                  the underlying reasoning process. The generated Python snippets are executed, and only those that run
+                  successfully and produce outputs matching the expected results are retained. By pairing the code with
+                  the corresponding reasoning step, we create the final data. This process yields a 2.7B-token corpus of
+                  mathematical code snippets accompanied with their corresponding reasoning steps, which we combine with
+                  the data generated in the first step to create a 19.2B-token pretraining dataset, named
+                  <b>MathCode-Pile</b>.
+                </p>
               </div>
             </div>
           </div>
@@ -253,7 +306,10 @@
               <div class="content has-text-centered">
                 <img src="static/assets/results.png" alt="data-overview" style="max-width: 80%;" />
                 <p>
-                  Performance of various pretrained models on five representative mathematical datasets. All results reported are based on greedy decoding. "Code-open" shows whether the code for data-processing and model-training is open-sourced. The red numbers show the improvements compared to the base model from which each MathCoder2 model is trained.
+                  Performance of various pretrained models on five representative mathematical datasets. All results
+                  reported are based on greedy decoding. "Code-open" shows whether the code for data-processing and
+                  model-training is open-sourced. The red numbers show the improvements compared to the base model from
+                  which each MathCoder2 model is trained.
                 </p>
               </div>
             </div>
@@ -268,7 +324,15 @@
             <div class="column is-four-fifths">
               <div class="content has-text-justified">
                 <p>
-                  As demonstrated in the table, continued pretraining on MathCode-Pile consistently improves performance across all five benchmark datasets. MathCoder2 models rival the performance of top models like InternLM2-Math-Base, InternLM2.5, and DeepSeekMath. In particular, MathCoder2-DeepSeekMath demonstrates that our method continues to enhance the performance of DeepSeekMath, a model that has already been extensively trained on large amounts of math-related data. However, there remains a performance gap between MathCoder2 and the Qwen2-Math and Qwen2.5-Math models. This gap might be attributed to their superior computational, manual, and financial resources, which enable the scaling of data size and the further improvement of data quality, reporting a mathemtaical dataset of 700B tokens.
+                  As demonstrated in the table, continued pretraining on MathCode-Pile consistently improves performance
+                  across all five benchmark datasets. MathCoder2 models rival the performance of top models like
+                  InternLM2-Math-Base, InternLM2.5, and DeepSeekMath. In particular, MathCoder2-DeepSeekMath
+                  demonstrates that our method continues to enhance the performance of DeepSeekMath, a model that has
+                  already been extensively trained on large amounts of math-related data. However, there remains a
+                  performance gap between MathCoder2 and the Qwen2-Math and Qwen2.5-Math models. This gap might be
+                  attributed to their superior computational, manual, and financial resources, which enable the scaling
+                  of data size and the further improvement of data quality, reporting a mathemtaical dataset of 700B
+                  tokens.
                 </p>
               </div>
             </div>
@@ -279,9 +343,9 @@
     </div>
   </section>
   </div>
-</section>
+  </section>
 
- 
+
 
   <!-- @PAN TODO: bibtex -->
   <!-- <section class="section" id="BibTeX">
