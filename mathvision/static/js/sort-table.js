@@ -169,7 +169,7 @@ sortTable.number = function(Cell) {
  * @returns {String}
  */
 sortTable.string = function(Cell) {
-    return sortTable.stripTags(Cell.innerHTML).toLowerCase();
+    return sortTable.stripTags(Cell.innerHTML).trim().toLowerCase();
 };
 
 /**
